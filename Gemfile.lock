@@ -86,6 +86,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     ffi (1.14.2)
+    foreman (0.87.2)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     globalid (0.4.2)
@@ -225,6 +226,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise (~> 4.7, >= 4.7.3)
+  foreman (~> 0.87.2)
   friendly_id (~> 5.4, >= 5.4.2)
   jbuilder (~> 2.7)
   listen (~> 3.2)
