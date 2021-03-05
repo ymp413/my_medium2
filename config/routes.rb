@@ -5,5 +5,11 @@ Rails.application.routes.draw do
 
   resources :stories
   
+  # /@ymp413/文章標題
+  get '@:username/:story_id', to: 'pages#show', as: 'story_page'
+
+  # /@ymp413/
+  get '@:username', to: 'pages#user', as: 'user_page'
+
   root 'pages#index'
 end
