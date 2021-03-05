@@ -25,6 +25,8 @@ class Story < ApplicationRecord
 
   # scopes
   default_scope {where(deleted_at: nil)}
+  # 用狀態機取代掉下面的用法了
+  # scope :published_stories, -> { where(status: 'published') }
 
   # instance methods
   def destroy
