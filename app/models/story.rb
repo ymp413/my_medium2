@@ -23,6 +23,7 @@ class Story < ApplicationRecord
   # relationship
   has_one_attached :cover_image
   belongs_to :user
+  has_many :comments
 
   # scopes
   scope :published_stories, -> { published.with_attached_cover_image.order(created_at: :desc).includes(:user) }
