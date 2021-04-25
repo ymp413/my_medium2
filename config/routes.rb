@@ -2,17 +2,21 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+  namespace :api do
+    resources :users, only: [] do
+      member do
+        post :follow
+      end
+    end
 
-  resources :users, only: [] do
-    member do
-      post :follow
+    resources :stories, only: [] do 
+      member do
+        post :clap
+      end
     end
   end
 
   resources :stories do 
-    member do
-      post :clap
-    end
     resources :comments, only: [:create]
   end
   
