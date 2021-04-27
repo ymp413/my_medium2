@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import axios from 'axios'
 
 export default class extends Controller {
-  static targets = [ "followButton" ]
+  static targets = [ "followButton", "bookmark" ]
 
   follow(event) {
     event.preventDefault()
@@ -26,6 +26,21 @@ export default class extends Controller {
           console.log(error)
          })
 
+  }
+
+  bookmark(event) {
+    event.preventDefault()
+
+    let link = event.currentTarget
+    let slug = link.dataset.slug
+
+    axios.post(`/api/stories/${slug}/bookmark`)
+         .then(function(response) {
+           console.log(response.data)
+         })
+         .catch(function(error) {
+           console.log(error)
+         })
   }
 
 }
