@@ -14,7 +14,11 @@
       <% end %>
 
       <%= link_to '#', class: 'bookmark-button', data: { action: 'user#bookmark', slug: @story.slug} do %>
-        <i class="far fa-bookmark" data-target="user.bookmark"></i>
+        <% if user_signed_in? && current_user.bookmark?(@story) %>
+          <i class="fas fa-bookmark" data-target="user.bookmark"></i>
+        <% else %>
+         <i class="far fa-bookmark" data-target="user.bookmark"></i>
+        <% end %>
       <% end %>
     </span>
 

@@ -33,10 +33,20 @@ export default class extends Controller {
 
     let link = event.currentTarget
     let slug = link.dataset.slug
+    let icon = this.bookmarkTarget // 因為這行才能這樣用 static targets = [ "followButton", "bookmark" ]
 
     axios.post(`/api/stories/${slug}/bookmark`)
          .then(function(response) {
-           console.log(response.data)
+           switch (response.data.status) {
+             case 'Bookmarked':
+               icon.classList.add('fas')
+               icon.classList.remove('far')
+               break;
+             case 'Unbookmarked':
+              icon.classList.add('far')
+              icon.classList.remove('fas')
+               break;
+           }
          })
          .catch(function(error) {
            console.log(error)
