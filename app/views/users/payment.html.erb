@@ -12,24 +12,39 @@
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
         </p>
       </div>
+      <%= form_with url: pay_users_path(type: params[:type]), id: 'pay_form', method: 'post', local: true do |form| %>
+        <div id="dropin-container"></div>
+        <input type="submit" class="button is-danger" value="付款"/>
+        <%= link_to "重新選擇方案", pricing_users_path, class: 'button is-light' %> 
+        <input type="hidden" id="nonce" name="payment_method_nonce"/>
+      <% end %>
     </div>
   </article>
 </div>
 
-<div id="dropin-container"></div>
-
 <script src="https://js.braintreegateway.com/web/dropin/1.27.0/js/dropin.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.76.2/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.76.2/js/data-collector.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function(event) {
+  document.addEventListener('turbolinks:load', function(event) {
+    const form = document.getElementById('pay_form');
+
     braintree.dropin.create({
       container: document.getElementById('dropin-container'),
       authorization: '<%= @token %>',
-      container: '#dropin-container'
+      container: '#dropin-container',
+      
     }, (error, dropinInstance) => {
-      // Use `dropinInstance` here
-      // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
+      if (error) console.error(error);
 
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        dropinInstance.requestPaymentMethod((error, payload) => {
+          if (error) console.error(error);
+          document.getElementById('nonce').value = payload.nonce;
+          form.submit();
+        });
+      });
     });
   })
-
 </script>

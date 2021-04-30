@@ -1,0 +1,6 @@
+price_vip: "10" # ENV['price_vip'] 
+price_platinum: "20"
+
+braintree_merchant_id: 'your_merchant_id'
+braintree_public_key: 'your_public_key'
+braintree_private_key: 'your_private_key'
