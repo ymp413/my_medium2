@@ -7,7 +7,7 @@
     </div>
     <div class="media-content">
       <div class="content">
-        <strong></span>
+        <span><%= @payment_type %> (USD<%= @fee %>)</span>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
         </p>
@@ -15,3 +15,21 @@
     </div>
   </article>
 </div>
+
+<div id="dropin-container"></div>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.27.0/js/dropin.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    braintree.dropin.create({
+      container: document.getElementById('dropin-container'),
+      authorization: '<%= @token %>',
+      container: '#dropin-container'
+    }, (error, dropinInstance) => {
+      // Use `dropinInstance` here
+      // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
+
+    });
+  })
+
+</script>

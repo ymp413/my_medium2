@@ -32,6 +32,8 @@ gem 'aasm', '~> 5.1', '>= 5.1.1'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'babosa', '~> 1.0', '>= 1.0.4'
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
+gem 'figaro', '~> 1.2'
+gem "braintree", "~> 3.4.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
